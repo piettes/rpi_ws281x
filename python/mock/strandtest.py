@@ -37,5 +37,5 @@ class Strandtest(object):
             strip.setPixelColor(i, color)
             strip.show()
             #time.sleep(wait_ms / 1000.0)
-            bob = input("?")
+            bob = raw_input("?")
             print bob
