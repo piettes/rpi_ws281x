@@ -36,4 +36,6 @@ class Strandtest(object):
         for i in range(strip.numPixels()):
             strip.setPixelColor(i, color)
             strip.show()
-            time.sleep(wait_ms / 1000.0)
+            #time.sleep(wait_ms / 1000.0)
+            bob = input("?")
+            print bob
