@@ -5,6 +5,8 @@
 # various animations on a strip of NeoPixels.
 import time
 
+import readchar
+
 # LED strip configuration:
 LED_COUNT = 30  # Number of LED pixels.
 LED_PIN = 18  # GPIO pin connected to the pixels (must support PWM!).
@@ -23,6 +25,8 @@ class Strandtest(object):
         # Intialize the library (must be called once before other functions).
         strip.begin()
 
+        self.theClass = theClass
+
         print ('Press Ctrl-C to quit.')
         while True:
             # Color wipe animations.
@@ -30,12 +34,15 @@ class Strandtest(object):
             self.colorWipe(strip, theClass.Color(0, 255, 0))  # Blue wipe
             self.colorWipe(strip, theClass.Color(0, 0, 255))  # Green wipe
 
-    # Define functions which animate LEDs in various ways.
     def colorWipe(self, strip, color, wait_ms=50):
-        """Wipe color across display a pixel at a time."""
-        for i in range(strip.numPixels()):
-            strip.setPixelColor(i, color)
+        strip.setPixelColor(0, color)
+        x = 0
+        while True and x < strip.numPixels():
+            c = raw_input("?")
+            if (c == "q"):
+                x = x - 1
+                strip.setPixelColor(x, self.theClass.Color(0, 0, 0))
+            else :
+                x = x + 1
+                strip.setPixelColor(x, color)
             strip.show()
-            #time.sleep(wait_ms / 1000.0)
-            bob = raw_input("?")
-            print bob
